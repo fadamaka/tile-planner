@@ -44,21 +44,7 @@ function snapAdjust(key) {
   const rectY = rectangles[key].y;
   let adjustedX = mousePosition.x;
   let adjustedY = mousePosition.y;
-  console.log(
-    "intersects",
-    instersectingRects.filter(
-      (r) => !(r.x === rectangles[key].x && r.y === rectangles[key].y)
-    ).length
-  );
   if (instersectingRects.length > 1) {
-    // console.log(
-    //   "x snap range",
-    //   instersectingRects.filter(
-    //     (r) =>
-    //       Math.abs(rectangles[key].x + rectangles[key].w - r.x) < snapRange ||
-    //       Math.abs(r.x + r.w - rectangles[key].x) < snapRange
-    //   ).length
-    // );
     instersectingRects
       .filter((r) => !(r.x === rectangles[key].x && r.y === rectangles[key].y))
       .forEach((r) => {
@@ -210,9 +196,9 @@ function intersects(rectangle) {
 function rectIntersect(currentRect, inspectedRect) {
   return (
     currentRect.x + currentRect.w >= inspectedRect.x &&
-    currentRect.x < inspectedRect.x + inspectedRect.w &&
+    currentRect.x <= inspectedRect.x + inspectedRect.w &&
     currentRect.y + currentRect.h >= inspectedRect.y &&
-    currentRect.y < inspectedRect.y + inspectedRect.h
+    currentRect.y <= inspectedRect.y + inspectedRect.h
   );
 }
 
